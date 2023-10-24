@@ -9,8 +9,8 @@ npm run build
 # 进入生成的文件夹
 cd docs
 
-# 如果是发布到自定义域名
-# echo 'www.example.com' > CNAME
+# 发布到自定义域名
+echo 'es.chaosopen.top' > CNAME
 
 git init
 git add -A
