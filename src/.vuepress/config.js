@@ -1,7 +1,7 @@
 module.exports = {
     title: '《ElasticSearch入门到实战》电子书',
     description: '《ElasticSearch入门到实战》电子书',
-    base: '/',   // 设置站点根路径
+    base: '/elasticsearch_in_action/',   // 设置站点根路径
     dest: './docs',  // 设置输出目录
     head: [],
     plugins: [],
