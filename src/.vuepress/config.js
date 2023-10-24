@@ -35,6 +35,7 @@ module.exports = {
                 '/chapter1/elastic_search_intro',
                 '/chapter1/install_elastic_search',
                 '/chapter1/elastic_search_client',
+                '/chapter1/elastic_search_client_coding',
               ]
             }],
         sidebarDepth: 2,//左侧导航显示的层级

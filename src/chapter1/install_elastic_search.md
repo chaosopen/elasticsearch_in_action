@@ -7,9 +7,9 @@ meta:
 ---
 # 1.2 搭建ElasticSearch环境
 
-ElasticSearch下载地址：[点击打开](https://www.elastic.co/cn/downloads/past-releases#elasticsearch)
-
-检索7.9.3版本，本书用7.9.3版本讲解，注意版本不要差距过大，否则导致会出现很多小问题
+> ElasticSearch下载地址：[点击打开](https://www.elastic.co/cn/downloads/past-releases#elasticsearch)
+>
+> 检索7.9.3版本，本书用7.9.3版本讲解，注意版本不要差距过大，否则导致会出现很多小问题
 
 ![图1-2](../imgs/1-2.png)
 
