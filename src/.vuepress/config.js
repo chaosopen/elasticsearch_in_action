@@ -2,15 +2,14 @@ module.exports = {
     title: '《ElasticSearch入门到实战》电子书',
     description: '《ElasticSearch入门到实战》电子书',
     base: '/',   // 设置站点根路径
-    dest: './ROOT',  // 设置输出目录
+    dest: './docs',  // 设置输出目录
     head: [],
     plugins: [],
     themeConfig: {
         // 添加导航栏
         nav: [
             { text: '主页', link: '/' },
-            { text: '工作指南', link: '/guide/' },
-            { text: '作者联系方式', link: '/life/' },
+            { text: '作者联系方式', link: '/guide/' },
             {
                 text: '捐赠',
                 items: [
@@ -32,6 +31,8 @@ module.exports = {
               collapsable: false,
               children:[
                 '/chapter1/elastic_search_intro',
+                '/chapter1/install_elastic_search',
+                '/chapter1/elastic_search_client',
               ]
             }],
         sidebarDepth: 2,//左侧导航显示的层级
