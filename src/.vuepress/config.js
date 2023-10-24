@@ -4,7 +4,18 @@ module.exports = {
     base: '/',   // 设置站点根路径
     dest: './docs',  // 设置输出目录
     head: [
-      ['meta', { name: 'keywords', content: 'elasticsearch,es教程,elasticsearch入门指南,数据分析'}]
+      ['meta', { name: 'keywords', content: 'elasticsearch,es教程,elasticsearch入门指南,数据分析'}],
+      [
+        'script',
+        {},
+        `var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "https://hm.baidu.com/hm.js?b0231d3d61fb3ebcedfd5248c5a48a40";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();`
+      ]
     ],
     plugins: [],
     themeConfig: {
