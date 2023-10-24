@@ -1,3 +1,10 @@
+---
+meta:
+  - name: description
+    content: es教程 安装Kibana和Cerebro客户端
+  - name: keywords
+    content: es教程,es客户端,es连接工具,kibana安装,cerebro安装
+---
 # 1.3 ElasticSearch客户端
 
 ElasticSearch目前比较流行的可视化客户端
