@@ -1,3 +1,11 @@
+---
+meta:
+  - name: description
+    content: Elasticsearch是一个开源的、基于Apache Lucene库的搜索引擎，它提供了全文搜索能力，特别适合于处理大量文本数据
+  - name: keywords
+    content: elasticsearch简介,elasticsearch为什么快
+---
+
 # 1.1 初识ElasticSearch
 
 ## 1.1.1 ElasticSearch 简介

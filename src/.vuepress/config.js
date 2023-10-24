@@ -1,9 +1,11 @@
 module.exports = {
     title: '《ElasticSearch入门到实战》电子书',
-    description: '《ElasticSearch入门到实战》电子书',
+    description: '在这个ES教程网站上，你将学习如何使用Elasticsearch进行入门学习搭建安装、查询优化以及集群配置等方面的知识。',
     base: '/elasticsearch_in_action/',   // 设置站点根路径
     dest: './docs',  // 设置输出目录
-    head: [],
+    head: [
+      ['meta', { name: 'keywords', content: 'elasticsearch,es教程,elasticsearch入门指南,数据分析'}]
+    ],
     plugins: [],
     themeConfig: {
         // 添加导航栏
