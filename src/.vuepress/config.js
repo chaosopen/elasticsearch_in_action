@@ -3,6 +3,7 @@ module.exports = {
     description: '在这个ES教程网站上，你将学习如何使用Elasticsearch进行入门学习搭建安装、查询优化以及集群配置等方面的知识。',
     base: '/',   // 设置站点根路径
     dest: './docs',  // 设置输出目录
+    port: 8088,
     head: [
       ['meta', { name: 'keywords', content: 'elasticsearch,es教程,elasticsearch入门指南,数据分析'}],
       [
@@ -34,11 +35,8 @@ module.exports = {
             { text: '主页', link: '/' },
             { text: '作者联系方式', link: '/guide/' },
             {
-                text: '捐赠',
-                items: [
-                    { text: '支付宝', link: '/#支付宝捐赠二维码' },
-                    { text: '微信', link: '/#微信捐赠二维码' },
-                ]
+                text: '赞助',
+                link: '/sponsor'
             },
             { text: "GitHub", link: 'https://github.com/chaosopen/elasticsearch_in_action'}
         ],
@@ -58,6 +56,20 @@ module.exports = {
                 '/chapter1/elastic_search_client',
                 '/chapter1/elastic_search_client_coding',
               ]
+            },
+            {
+              title:"第二章：ElasticSearch基础操作",
+              path:"/chapter2/index",
+              collapsable: false,
+              children:[
+                '/chapter2/index_operation',
+                '/chapter2/mapping_operation',
+                '/chapter2/document_operation',
+              ]
+            },
+            {
+              title:"赞助",
+              path:"/sponsor"
             }],
         sidebarDepth: 2,//左侧导航显示的层级
         lastUpdated: 'Last Updated'

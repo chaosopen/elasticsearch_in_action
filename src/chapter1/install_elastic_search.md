@@ -17,7 +17,7 @@ meta:
 
 
 
-## 1.2.1 Linux环境下安装ElasticSearch
+## 1.2.1 Linux环境下安装ES
 
 ### 1. 先新建一个用户（出于安全考虑，Elasticsearch默认不允许以root账号运行。）
 
@@ -91,7 +91,7 @@ su esuser
 
 到这里就已经结束了，可以通过 logs/elasticsearch.log 日志，查看启动是否成功。
 
-## 1.2.2 Windows环境下安装ElasticSearch
+## 1.2.2 Windows环境下安装ES
 
 ### 1. 下载Windows版本
 
@@ -101,11 +101,13 @@ su esuser
 
 进入 bin 目录下，双击执行 elasticsearch.bat 文件。执行文件后，可以在窗口中看到 Elasticsearch 的启动过程。
 
+![图1-3](../imgs/1-3.png)
+
 在 Elasticsearch 启动后，可以在浏览器的地址栏输入：[http://localhost:9200/](http://localhost:9200/) 查看启动情况
 
 
 
-## 1.2.3 Docker环境下安装ElasticSearch
+## 1.2.3 Docker环境下安装ES
 
 ### 1. 拉取对应的ES版本镜像
 
@@ -113,7 +115,7 @@ su esuser
 docker pull elasticsearch:7.9.3
 ```
 
-![图1-3](../imgs/1-3.png)
+![图1-4](../imgs/1-4.png)
 
 ### 2. 查看镜像是否拉取成功
 
@@ -121,7 +123,7 @@ docker pull elasticsearch:7.9.3
 docker images
 ```
 
-![图1-4](../imgs/1-4.png)
+![图1-5](../imgs/1-5.png)
 
 ### 3. 创建数据卷挂载目录
 
