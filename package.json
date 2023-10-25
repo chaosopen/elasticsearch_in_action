@@ -11,10 +11,12 @@
   "author": "yeyi",
   "license": "ISC",
   "devDependencies": {
-    "vuepress": "^1.9.10"
+    "vuepress": "^1.9.10",
+    "vuepress-plugin-baidu-autopush": "^1.0.1"
   },
   "dependencies": {
     "vue": "^2.7.15",
-    "vue-server-renderer": "^2.7.15"
+    "vue-server-renderer": "^2.7.15",
+    "vuepress-plugin-sitemap": "^2.3.1"
   }
 }

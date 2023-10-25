@@ -17,7 +17,17 @@ module.exports = {
         })();`
       ]
     ],
-    plugins: [],
+    plugins: [
+      ['sitemap', {
+          hostname: "https://es.chaosopen.top",
+          // 排除无实际内容的页面
+          exclude: ["/404.html"]
+        }
+      ],
+      [
+        'vuepress-plugin-baidu-autopush'
+      ]
+    ],
     themeConfig: {
         // 添加导航栏
         nav: [
