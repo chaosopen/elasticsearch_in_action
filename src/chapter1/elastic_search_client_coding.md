@@ -7,7 +7,7 @@ SpringBoot是目前Java开发主流的开源框架，很多项目都是基于Spr
 
 ### 1. 创建项目
 创建SpringBoot项目，导入Maven依赖
-导入es依赖
+导入es依赖需要的依赖、fastjson依赖，fastjson后续会用
 ```xml
 <dependency>
     <groupId>org.elasticsearch</groupId>
@@ -18,6 +18,11 @@ SpringBoot是目前Java开发主流的开源框架，很多项目都是基于Spr
     <groupId>org.elasticsearch.client</groupId>
     <artifactId>elasticsearch-rest-high-level-client</artifactId>
     <version>7.9.3</version>
+</dependency>
+<dependency>
+    <groupId>com.alibaba</groupId>
+    <artifactId>fastjson</artifactId>
+    <version>1.2.78</version>
 </dependency>
 ```
 ### 2. 编写配置

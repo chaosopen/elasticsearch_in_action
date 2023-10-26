@@ -7,7 +7,7 @@ ES索引是存储数据的容器，类似于数据库。
 ### 1. DSL语法
 
 ```json
-PUT /indexname
+PUT indexname
 {
   "settings": {
     "number_of_shards": 1,
@@ -124,7 +124,7 @@ cerebro创建索引其他方式：选择 `more` 里面有很多配置， 点击 
 
 ### 1. DSL语法
 ```json
-DELETE /indexname
+DELETE indexname
 ```
 调用执行，以下返回结果为成功
 ```json
@@ -166,7 +166,7 @@ DELETE /indexname
 
 #### 1. DSL语法
 ```json
-POST /indexname/_close
+POST indexname/_close
 ```
 调用执行，以下返回结果为成功
 ```json
@@ -199,7 +199,7 @@ POST /indexname/_close
 
 #### 1. DSL语法
 ```json
-POST /indexname/_open
+POST indexname/_open
 ```
 调用执行，以下返回结果为成功
 ```json

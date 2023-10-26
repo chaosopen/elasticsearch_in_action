@@ -12,7 +12,7 @@
 
 ### 1. DSL语法
 ```json
-GET /indexname/_mapping
+GET indexname/_mapping
 ```
 请求返回结果如下：
 ```json
@@ -33,11 +33,29 @@ GET /indexname/_mapping
 ```
 返回的信息和建立该索引时的信息是一致的
 
+### 2. Java API
+```java
+    @Autowired
+    private RestHighLevelClient client;
+
+    @RequestMapping("/getMapping")
+    public Map getMapping(String indexName) throws IOException {
+        GetMappingsRequest request = new GetMappingsRequest();
+        request.indices(indexName);
+        GetMappingsResponse mappingsResponse = client.indices().getMapping(request, RequestOptions.DEFAULT);
+        Map<String, MappingMetadata> allMappings = mappingsResponse.mappings();
+        MappingMetadata indexMapping = allMappings.get(indexName);
+        Map<String, Object> mapping = indexMapping.sourceAsMap();
+        return mapping;
+    }
+```
+接口返回结果
+
 ## 2.2.2 新增映射
-映射一般情况下是创建索引的时候就已经指定好的，但是在实际开发情况下，我们需要新增字段，那么就需要新增一个字段映射，**需要注意的是字段映射只能增加，不能更改删除**
+映射一般情况下是创建索引的时候就已经指定好的，但是在实际开发情况下，我们需要新增字段，那么就需要新增一个字段映射，<font color='red'>**需要注意的是字段映射只能增加，不能更改删除**</font>
 ### 1. DSL语法
 ```json
-POST /indexname/_mapping
+POST indexname/_mapping
 {
   "properties":{
     "name3":{
@@ -75,3 +93,30 @@ POST /indexname/_mapping
 }
 ```
 从返回结果可见，新字段映射已经添加成功。
+
+### 2. Java API
+```java
+    @Autowired
+    private RestHighLevelClient client;
+
+    @RequestMapping("/addMapping")
+    public Boolean addMapping(String indexName) {
+        PutMappingRequest request = new PutMappingRequest(indexName);
+        request.source(
+                  "{\n" +
+                        "  \"properties\":{\n" +
+                        "    \"name3\":{\n" +
+                        "      \"type\":\"keyword\"\n" +
+                        "    }\n" +
+                        "  }\n" +
+                        "}", XContentType.JSON);
+        try {
+            client.indices().putMapping(request, RequestOptions.DEFAULT);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+```
+调用接口后查看映射信息，会发现新增加了一个字段 `name3`
