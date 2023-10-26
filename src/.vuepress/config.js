@@ -65,6 +65,7 @@ module.exports = {
                 '/chapter2/index_operation',
                 '/chapter2/mapping_operation',
                 '/chapter2/document_operation',
+                '/chapter2/field_type_intro',
               ]
             },
             {
