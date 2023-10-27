@@ -5,6 +5,10 @@
 文章中会用到的简称：
 > ES = ElasticSearch
 
+## 进度
+- 基础使用正在创作中
+
+如发现书中有疑问、缺少内容的可以在[GitHub](https://github.com/chaosopen/elasticsearch_in_action)上提Issue 
 
 注意版本问题，过低的版本会导致部分语法不可用
 

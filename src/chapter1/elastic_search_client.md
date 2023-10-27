@@ -15,7 +15,7 @@ ElasticSearch目前比较流行的可视化客户端
 
 本书演示Kibana和Cerebro安装，任选其一学习即可  
 
-<font color="red">**我个人比较喜欢用Cerebro，所以在本书大部分可视化场景操作都是用这个**</font>
+<font color="red">**我个人比较喜欢用Cerebro，所以在本书大部分可视化场景操作都是用这个，书中示例语句可以直接copy到Kibana运行**</font>
 
 对于Head插件，这个东西我个人感觉不太好用，所以本文不讲述  
 

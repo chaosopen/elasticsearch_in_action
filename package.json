@@ -12,7 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "vuepress": "^1.9.10",
-    "vuepress-plugin-baidu-autopush": "^1.0.1"
+    "vuepress-plugin-baidu-autopush": "^1.0.1",
+    "vuepress-plugin-one-click-copy": "^1.0.6"
   },
   "dependencies": {
     "vue": "^2.7.15",

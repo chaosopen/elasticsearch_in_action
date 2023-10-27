@@ -27,7 +27,13 @@ module.exports = {
       ],
       [
         'vuepress-plugin-baidu-autopush'
-      ]
+      ],
+      ['one-click-copy', {
+        copySelector: ['div[class*="language-"] pre', 'div[class*="aside-code"] aside'], // String or Array
+        copyMessage: '复制成功!', // default is 'Copied successfully!'
+        toolTipMessage: '复制', // default is ''Copy to clipboard'
+        duration: 800, // prompt message display time
+      }]
     ],
     themeConfig: {
         // 添加导航栏
@@ -66,6 +72,18 @@ module.exports = {
                 '/chapter2/mapping_operation',
                 '/chapter2/document_operation',
                 '/chapter2/field_type_intro',
+                '/chapter2/segment_word_search',
+              ]
+            },
+            {
+              title:"第三章：ElasticSearch进阶高级搜索",
+              path:"/chapter3/index",
+              collapsable: false,
+              children:[
+                '/chapter3/select_grammar',
+                '/chapter3/sw_search',
+                '/chapter3/rank_search',
+                '/chapter3/aggs_search',
               ]
             },
             {

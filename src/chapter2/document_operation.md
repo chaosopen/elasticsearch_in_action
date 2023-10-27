@@ -1,4 +1,4 @@
-# 2.3 文档操作
+# 2.3 文档数据操作
 
 本章节我们讲对于ES数据的基本操作。
 
@@ -383,6 +383,8 @@ POST index_operation/_update_by_query
 ```
 该语句使用 `query` 条件查询，配合脚本进行指定字段修改，脚本操作后续会有详细讲解，在本章我们先做简单了解
 
+`script` 设置要修改的内容可以多个值多个用 `;` 隔开
+
 * 修改 `age > 18 and age < 25` 的数据，name修改为`青少年`
 ```json
 POST index_operation/_update_by_query
@@ -402,13 +404,60 @@ POST index_operation/_update_by_query
 }
 ```
 
+### 2. Java API
+
+* 修改 `age=18` 的数据，name修改为`成年人`
+```java
+    @Autowired
+    private RestHighLevelClient client;
+
+    @RequestMapping("/updateCondition1")
+    public Boolean updateCondition1() throws IOException {
+        UpdateByQueryRequest updateByQuery  = new UpdateByQueryRequest("index_operation");
+        updateByQuery.setQuery(QueryBuilders.termQuery("age", 18));
+        updateByQuery.setScript(new Script("ctx._source['name']='成年人'"));
+        client.updateByQuery(updateByQuery, RequestOptions.DEFAULT);
+        return true;
+    }
+```
+
+* 修改 `age > 18 and age < 25` 的数据，name修改为`青少年`
+```java
+    @Autowired
+    private RestHighLevelClient client;
+
+    @RequestMapping("/updateCondition2")
+    public Boolean updateCondition2() throws IOException {
+        UpdateByQueryRequest updateByQuery  = new UpdateByQueryRequest("index_operation");
+        updateByQuery.setQuery(QueryBuilders.rangeQuery("age").gt(18).lt(25));
+        updateByQuery.setScript(new Script("ctx._source['name']='青少年'"));
+        client.updateByQuery(updateByQuery, RequestOptions.DEFAULT);
+        return true;
+    }
+```
+
 ## 2.3.8 单条删除文档
+
+通过ID删除数据
 
 ### 1. DSL语法
 ```json
 DELETE index_operation/_doc/1
 ```
 
+### 2. Java API
+
+```java
+    @Autowired
+    private RestHighLevelClient client;
+
+    @RequestMapping("/delete")
+    public Boolean delete() throws IOException {
+        DeleteRequest deleteRequest = new DeleteRequest("index_operation").id("1");
+        client.delete(deleteRequest, RequestOptions.DEFAULT);
+        return true;
+    }
+```
 
 ## 2.3.9 条件删除文档
 
@@ -442,7 +491,7 @@ POST index_operation/_delete_by_query
 ```
 * 清空所有数据
 
-`match_all` 语法相当于查询全部数据
+`match_all` 语法相当于查询全部数据，这种情况建议 `删索引重建`
 
 ```json
 POST index_operation/_delete_by_query
@@ -457,4 +506,48 @@ POST index_operation/_delete_by_query
 
 ```json
 POST index_operation/_forcemerge?max_num_segments=1
+```
+
+### 2. Java API
+
+* 删除 `age=18` 的数据
+
+```java
+    @Autowired
+    private RestHighLevelClient client;
+
+    @RequestMapping("/deleteCondition1")
+    public Boolean deleteCondition1() throws IOException {
+        DeleteByQueryRequest updateByQuery  = new DeleteByQueryRequest("index_operation");
+        updateByQuery.setQuery(QueryBuilders.termQuery("age", 18));
+        client.deleteByQuery(updateByQuery, RequestOptions.DEFAULT);
+        return true;
+    }
+```
+* 删除 `age > 18 and age < 25` 的数据
+```java
+    @Autowired
+    private RestHighLevelClient client;
+
+    @RequestMapping("/deleteCondition2")
+    public Boolean deleteCondition2() throws IOException {
+        DeleteByQueryRequest updateByQuery  = new DeleteByQueryRequest("index_operation");
+        updateByQuery.setQuery(QueryBuilders.rangeQuery("age").gt(18).lt(25));
+        client.deleteByQuery(updateByQuery, RequestOptions.DEFAULT);
+        return true;
+    }
+```
+
+* 清空所有数据
+```java
+    @Autowired
+    private RestHighLevelClient client;
+
+    @RequestMapping("/deleteAll")
+    public Boolean deleteAll() throws IOException {
+        DeleteByQueryRequest updateByQuery  = new DeleteByQueryRequest("index_operation");
+        updateByQuery.setQuery(QueryBuilders.matchAllQuery());
+        client.deleteByQuery(updateByQuery, RequestOptions.DEFAULT);
+        return true;
+    }
 ```
