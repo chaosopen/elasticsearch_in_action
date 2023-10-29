@@ -11,4 +11,4 @@ ES基本语法是DSL，全称为 `Domain Specific Language` 领域专用语言�
 * [2.2：映射操作](mapping_operation.md)
 * [2.3：文档数据操作](document_operation.md)
 * [2.4：字段类型介绍](field_type_intro.md)
-* [2.5：分词查询操作](segment_word_search.md)
+* [2.5：分词操作介绍](segment_word_search.md)
