@@ -1,10 +1,3 @@
----
-meta:
-  - name: description
-    content: ES linux环境安装es，windows环境安装es，docker环境安装es教程
-  - name: keywords
-    content: es安装,elasticsearch安装,linux安装es,windows安装es,docker安装es
----
 # 1.2 搭建ElasticSearch环境
 
 > ElasticSearch下载地址：[点击打开](https://www.elastic.co/cn/downloads/past-releases#elasticsearch)

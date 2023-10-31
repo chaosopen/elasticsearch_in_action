@@ -10,7 +10,7 @@ npm run build
 cd docs
 
 # 发布到自定义域名
-echo 'es.chaosopen.top' > CNAME
+echo 'es.chaosopen.cn' > CNAME
 
 git init
 git add -A

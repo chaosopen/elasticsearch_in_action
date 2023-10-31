@@ -1,6 +1,6 @@
 module.exports = {
     title: '《ElasticSearch入门到实战》电子书',
-    description: '在这个ES教程网站上，你将学习如何使用Elasticsearch进行入门学习搭建安装、查询优化以及集群配置等方面的知识。',
+    // description: '在这个ES教程网站上，你将学习如何使用Elasticsearch进行入门学习搭建安装、查询优化以及集群配置等方面的知识。',
     base: '/',   // 设置站点根路径
     dest: './docs',  // 设置输出目录
     port: 8088,
@@ -12,7 +12,7 @@ module.exports = {
         `var _hmt = _hmt || [];
         (function() {
           var hm = document.createElement("script");
-          hm.src = "https://hm.baidu.com/hm.js?ba30851a15686ae121e15ab60409ce86";
+          hm.src = "https://hm.baidu.com/hm.js?cf62495503806b1a59f15409bcb76089";
           var s = document.getElementsByTagName("script")[0]; 
           s.parentNode.insertBefore(hm, s);
         })();`
@@ -20,7 +20,7 @@ module.exports = {
     ],
     plugins: [
       ['sitemap', {
-          hostname: "https://es.chaosopen.top",
+          hostname: "https://es.chaosopen.cn",
           // 排除无实际内容的页面
           exclude: ["/404.html"]
         }
@@ -33,13 +33,14 @@ module.exports = {
         copyMessage: '复制成功!', // default is 'Copied successfully!'
         toolTipMessage: '复制', // default is ''Copy to clipboard'
         duration: 800, // prompt message display time
-      }]
+      }
+    ]
     ],
     themeConfig: {
         // 添加导航栏
         nav: [
             { text: '主页', link: '/' },
-            { text: '作者联系方式', link: '/guide/' },
+            { text: '一起交流', link: '/guide/' },
             {
                 text: '赞助',
                 link: '/sponsor'
