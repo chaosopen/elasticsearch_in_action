@@ -12,3 +12,4 @@
 2. 微信赞助二维码
 
 <img decodeing="async" src="./imgs/wx.jpg" width="30%"/>
+
