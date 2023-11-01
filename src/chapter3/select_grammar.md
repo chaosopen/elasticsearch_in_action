@@ -19,6 +19,14 @@ PUT product_index
     }
   }
 }
+
+POST _bulk
+{"create":{"_index":"product_index","_id":1}}
+{"productName":"苹果12手机 Apple iPhone 12 苹果手机 国行全网通 黑色","price":2689,"createTime":"2023-10-30 17:46:13"}
+{"create":{"_index":"product_index","_id":2}}
+{"productName":"Apple iPhone 15 Pro Max (A3108) 256GB 黑色手机","price":9999,"createTime":"2023-10-31 17:46:13"}
+{"create":{"_index":"product_index","_id":3}}
+{"productName":"Apple iPhone 13 Pro Max 苹果13pro苹果13promax 5G国行二手手机","price":9999,"createTime":"2023-9-21 17:46:13"}
 ```
 
 ## 3.2.1 查询 Query
@@ -35,6 +43,122 @@ POST indexname/_search
 ```
 
 ## 3.2.2 match查询
+
+### 1. match查询
+match会把字符串先分词，后检索
+```json
+GET product_index/_search
+{
+	"query":{
+		"match":{
+			"productName":"苹果12手机"
+		}
+	}
+}
+```
+> 根据 `productName` 字段设置的IK分词器，则为:['苹果','12','手机']
+>
+> 只要匹配任何一个则会进行返回
+>
+该情况类似 `or` 条件，如果需要所有词都满足才查询出来，需要设置 `and` 条件
+```json
+GET product_index/_search
+{
+	"query":{
+		"match":{
+			"productName":{
+			  "query": "苹果12手机",
+			  "operator": "and"
+			}
+		}
+	}
+}
+```
+`operator` 的值用来设置分词后的匹配规则，默认是 `or` 。
+
+
+### 2. match_all查询
+match_all 查询全部
+```json
+GET product_index/_search
+{
+  "query": {
+    "match_all": {}
+  }
+}
+```
+
+### 3. match_phrase查询
+match_phrase为短语查询，对应的的都要进行匹配，相对于match的operator的and。
+不同的是 `slop` 可以控制分词匹配距离
+
+例如样例数据：
+> Apple iPhone 15
+
+搜索语句：
+```json
+GET product_index/_search
+{
+	"query": {
+		"match_phrase": {
+			"productName": {
+			  "query": "Apple 15",
+			  "slop": 2
+			}
+		}
+	}
+}
+```
+如果slop=0，是没有结果的。  
+slop参数默认为0，slop参数为两组词之间的最大可移动的间隔和顺序，在搜索的时候更加灵活。
+
+### 4. match_phrase_prefix查询
+match_phrase_prefix 是最左前缀匹配,类似match_phrase ,差异点是根据分词器进行前缀匹配
+
+```json
+GET product_index/_search
+{
+	"query": {
+		"match_phrase_prefix": {
+			"productName": {
+			  "query": "苹果手",
+			  "max_expansions": 5
+			}
+		}
+	}
+}
+```
+根据分词器然后进行最左前缀匹配
+
+参数：
+> max_expansions：前缀查询对性能影响很大，所以再使用的时候会对结果集进行限制，默认不进行限制
+
+### 5. multi_match查询
+相对于前面几种都是单字段查询，而multi_match则是多字段查询
+
+```json
+GET product_index/_search
+{
+  "query": {
+    "multi_match": {
+      "query": "Apple",
+      "fields": [
+        "productName"
+      ],
+      "type": "phrase"
+    }
+  }
+}
+```
+根据分词器然后进行最左前缀匹配
+
+参数：
+> type：
+>
+> phrase: 实现 match_phrase的方法
+>
+> phrase_prefix : 实现match_phrase_prefixd的方法
+
 
 
 ## 3.2.3 term查询

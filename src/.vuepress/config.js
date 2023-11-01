@@ -88,6 +88,46 @@ module.exports = {
               ]
             },
             {
+              title:"第四章：抽丝剥茧深入底层精通ES",
+              path:"/chapter4/index",
+              collapsable: false,
+              children:[
+                '/guide',
+              ]
+            },
+            {
+              title:"第五章：电商搜索引擎实战",
+              path:"/chapter5/index",
+              collapsable: false,
+              children:[
+                '/guide',
+              ]
+            },
+            {
+              title:"第六章：海量日志平台建设",
+              path:"/chapter5/index",
+              collapsable: false,
+              children:[
+                '/guide',
+              ]
+            },
+            {
+              title:"第七章：高阶API文档",
+              path:"/chapter5/index",
+              collapsable: false,
+              children:[
+                '/guide',
+              ]
+            },
+            {
+              title:"ES报错信息指南",
+              path:"/chapter3/index",
+              collapsable: false,
+              children:[
+                '/guide',
+              ]
+            },
+            {
               title:"赞助",
               path:"/sponsor"
             }],
