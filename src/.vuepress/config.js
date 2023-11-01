@@ -92,7 +92,7 @@ module.exports = {
               path:"/chapter4/index",
               collapsable: false,
               children:[
-                '/guide',
+                '/chapter3/select_grammar',
               ]
             },
             {
@@ -100,7 +100,7 @@ module.exports = {
               path:"/chapter5/index",
               collapsable: false,
               children:[
-                '/guide',
+                '/chapter3/select_grammar',
               ]
             },
             {
@@ -108,7 +108,7 @@ module.exports = {
               path:"/chapter5/index",
               collapsable: false,
               children:[
-                '/guide',
+                '/chapter3/select_grammar',
               ]
             },
             {
@@ -116,7 +116,7 @@ module.exports = {
               path:"/chapter5/index",
               collapsable: false,
               children:[
-                '/guide',
+                '/chapter3/select_grammar',
               ]
             },
             {
@@ -124,7 +124,7 @@ module.exports = {
               path:"/chapter3/index",
               collapsable: false,
               children:[
-                '/guide',
+                '/chapter3/select_grammar',
               ]
             },
             {
