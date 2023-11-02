@@ -1,4 +1,4 @@
-# 3.2 查询语法
+# 3.1 查询语法
 本章讲解比较全面的查询语法，会拿一些比较常用的讲解
 
 **官方API参考文档**：[https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html)
@@ -40,9 +40,15 @@ POST _bulk
 {"productName":"Apple iPhone 13 Pro Max 苹果13pro苹果13promax 5G国行二手手机","price":9999,"createTime":"2023-9-21 17:46:13"}
 {"create":{"_index":"product_index","_id":5}}
 {"productName":"没有价格的数据","createTime":"2023-9-21 17:46:13"}
+{"create":{"_index":"product_index","_id":6}}
+{"productName":"Apple iPhone 13 Pro Max 苹果13pro苹果13promax 5G国行二手手机","price":7897,"createTime":"2023-9-21 17:46:13"}
+{"create":{"_index":"product_index","_id":7}}
+{"productName":"山东大苹果 13 公斤 ","price":7897,"createTime":"2023-9-21 17:46:13"}
+{"create":{"_index":"product_index","_id":8}}
+{"productName":"华为手机 ","price":6785,"createTime":"2023-9-21 17:46:13"}
 ```
 
-## 3.2.1 查询 Query
+## 3.1.1 查询 Query
 查询请求体中的query元素允许通过Query DSL来定义一个查询。
 ```json
 POST indexname/_search
@@ -55,7 +61,7 @@ POST indexname/_search
 }
 ```
 
-## 3.2.2 match查询
+## 3.1.2 match查询
 
 ### 1. match查询
 match会把字符串先分词，后检索
@@ -174,7 +180,7 @@ GET product_index/_search
 
 
 
-## 3.2.3 term查询
+## 3.1.3 term查询
 
 ### 1. term 查询
 term是拿原始值，不分词情况下查询，相当于MySQL的 `=` 查询
@@ -324,7 +330,71 @@ GET product_index/_search
 > prefix_length：表示内容开头的第几个字符必须完全匹配，加大prefix_length的值可以提高效率和准确率。
 
 
-## 3.2.4 分页（From / Size）
+## 3.1.4 多条件查询
+
+bool查询可以把条件查询组合在一起，使用筛选条件来表示简单逻辑之间的查询
+
+例如我只要 `iphone 13` 数据
+```json
+GET product_index/_search
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "term": {
+            "productName": "iphone"
+          }
+        },
+        {
+          "term": {
+            "productName": "13"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+常用语句：
+
+| 语句 | 说明
+| ---- | ---- 
+| must | 子句必须出现在匹配的文档中，并将有助于相关性得分。
+| must_not| 子句不得出现在匹配的文档中。子句在过滤器上下文中执行，这意味着计分被忽略，并且子句被视为用于缓存。
+| filter| 必须匹配，类似must语句，子句在过滤器上下文中执行，这意味着计分被忽略，并且子句被视为用于缓存。
+| should| 子句应出现在匹配的文档中，并将有助于相关性得分。【注意should的最小匹配数】
+
+使用 `should` 时一个重点参数：
+> minimum_should_match：最小匹配几个条件
+
+例如最小需要2个条件（即全满足）
+```json
+GET product_index/_search
+{
+  "query": {
+    "bool": {
+      "minimum_should_match": 2,
+      "should": [
+        {
+          "term": {
+            "productName": "iphone"
+          }
+        },
+        {
+          "term": {
+            "productName": "13"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+
+
+
+## 3.1.5 分页（From / Size）
 
 结果的分页可以通过使用from和size参数来完成。 from参数定义了您要提取的第一个结果的偏移量。 size参数允许您配置要返回的最大匹配数。
 
@@ -347,7 +417,7 @@ POST indexname/_search
 
 
 
-## 3.2.5 指定返回字段
+## 3.1.6 指定返回字段
 
 设置 `_source` 字段，选择需要返回的字段
 

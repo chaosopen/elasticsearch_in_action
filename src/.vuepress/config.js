@@ -1,6 +1,6 @@
 module.exports = {
     title: '《ElasticSearch入门到实战》电子书',
-    // description: '在这个ES教程网站上，你将学习如何使用Elasticsearch进行入门学习搭建安装、查询优化以及集群配置等方面的知识。',
+    description: '本书由浅入深的介绍了ElasticSearch从安装、基础使用，进阶高级语法，实战场景，底层原理等，更好的帮助读者学习ES的知识。',
     base: '/',   // 设置站点根路径
     dest: './docs',  // 设置输出目录
     port: 8088,
@@ -82,7 +82,6 @@ module.exports = {
               collapsable: false,
               children:[
                 '/chapter3/select_grammar',
-                '/chapter3/sw_search',
                 '/chapter3/rank_search',
                 '/chapter3/aggs_search',
               ]
