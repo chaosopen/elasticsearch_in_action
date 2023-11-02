@@ -1,5 +1,10 @@
 # 3.2 查询语法
-本章全面讲解查询语法，在开展学习之前，先创建以下索引并添加测试数据。
+本章讲解比较全面的查询语法，会拿一些比较常用的讲解
+
+**官方API参考文档**：[https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl.html)
+
+
+在开展学习之前，先创建以下索引并添加测试数据。
 
 ```json
 PUT product_index
@@ -8,7 +13,13 @@ PUT product_index
     "properties": {
       "productName":{
          "type": "text",
-         "analyzer": "ik_smart"
+         "analyzer": "ik_smart",
+         "fields": {
+            "keyword": {
+              "type": "keyword",
+              "ignore_above": 256
+            }
+          }
       },
       "price":{
          "type": "double"
@@ -27,6 +38,8 @@ POST _bulk
 {"productName":"Apple iPhone 15 Pro Max (A3108) 256GB 黑色手机","price":9999,"createTime":"2023-10-31 17:46:13"}
 {"create":{"_index":"product_index","_id":3}}
 {"productName":"Apple iPhone 13 Pro Max 苹果13pro苹果13promax 5G国行二手手机","price":9999,"createTime":"2023-9-21 17:46:13"}
+{"create":{"_index":"product_index","_id":5}}
+{"productName":"没有价格的数据","createTime":"2023-9-21 17:46:13"}
 ```
 
 ## 3.2.1 查询 Query
@@ -162,6 +175,154 @@ GET product_index/_search
 
 
 ## 3.2.3 term查询
+
+### 1. term 查询
+term是拿原始值，不分词情况下查询，相当于MySQL的 `=` 查询
+
+```json
+GET product_index/_search
+{
+  "query": {
+    "term": {
+      "productName": "苹果"
+    }
+  }
+}
+```
+
+### 2. terms 查询
+term是查询单个值，terms是查询多个，相当于MySQL的 `in` 查询
+
+```json
+GET product_index/_search
+{
+  "query": {
+    "terms": {
+      "productName": [
+        "苹果",
+        "黑色"
+      ]
+    }
+  }
+}
+```
+### 3. range 查询
+区间范围查询
+
+```json
+GET product_index/_search
+{
+  "query": {
+    "range": {
+      "price": {
+        "lt": 3000,
+        "gt": 10
+      }
+    }
+  }
+}
+```
+
+range语法参数说明
+> lt：小于  
+> gt：大于  
+> lte：小于等于  
+> gte：大于等于
+
+### 4. exists 空值过滤
+
+```json
+GET product_index/_search
+{
+  "query": {
+    "exists": {
+      "field": "price"
+    }
+  }
+}
+```
+
+### 5. prefix 前缀匹配
+以指定字符开头的搜索，一般在不分词keyword类型的字段应用，**一般面向用户的大规模产品不鼓励使用**。
+
+```json
+GET product_index/_search
+{
+  "query": {
+    "prefix": {
+      "productName.keyword": "Ap"
+    }
+  }
+}
+```
+
+
+### 5. wildcard 前缀匹配
+类似MySQL的like模糊匹配，一般在不分词keyword类型的字段应用，**一般面向用户的大规模产品不鼓励使用**。
+
+```json
+GET product_index/_search
+{
+  "query": {
+    "wildcard": {
+      "productName.keyword": "Ap*"
+    }
+  }
+}
+```
+
+支持单个字符通配符和多字符通配，`?` 为1个任意字符，`*` 为匹配零个或多个字符
+
+### 6. regexp 正则表达式匹配
+根据正则表达式查询，**一般面向用户的大规模产品不鼓励使用**。
+
+```json
+GET product_index/_search
+{
+  "query": {
+    "regexp": {
+      "productName.keyword": "A.*"
+    }
+  }
+}
+```
+
+### 7. ids 查询指定id的文档
+
+```json
+GET product_index/_search
+{
+  "query": {
+    "ids": {
+      "values": ["1","2"]
+    }
+  }
+}
+```
+
+### 8. fuzzy 纠错模糊查询
+忽略指定数量字符的错误，进行匹配
+
+```json
+GET product_index/_search
+{
+  "query": {
+    "fuzzy": {
+      "productName.keyword": {
+        "value": "没a价格的数a",
+        "fuzziness": 2,
+        "prefix_length": 1
+      }
+    }
+  }
+}
+```
+
+重要的参数：
+> fuzziness：表示输入的关键词纠错多少个字符。
+> 
+> prefix_length：表示内容开头的第几个字符必须完全匹配，加大prefix_length的值可以提高效率和准确率。
+
 
 ## 3.2.4 分页（From / Size）
 
