@@ -444,6 +444,114 @@ POST _analyze
 > 1. 写自定义接口，IK定时拉取数据初始化
 > 2. 读取数据库，配置数据库连接读取字典
 
+
+#### 4. IK配置同义词
+为什么要同义词？
+
+一个东西/含义可以有多个词来表达，例如：
+> 西红柿 = 番茄
+> 
+> 土豆 = 马铃薯
+
+如果你的搜索引擎存储的数据是 `西红柿`，用户检索 `番茄` 的时候，在用户体验感角度，需要检索出来的。
+
+有些地方词语都有自己的简称/别名，例如：
+> 建设银行 = 建行
+> 
+> 中国银行 = 中行
+
+此时就需要用到同义词的功能。
+
+* 1. 创建同义词文件
+
+在es的安装目录 `/config/analysis` 下创建 `synonym.txt` 文件，写入以下内容：
+> 西红柿,番茄
+> 
+> 苹果=>苹果,水果
+
+**同义词文件说明：**  
+同义词使用**英文逗号**分隔填写。  
+单向同义词使用 ***=>*** 分隔填写，单向同义词说明：苹果可以是水果，水果不一定是苹果。  
+**新增同义词需要重启ES**，热更新自行查找教程，这里作为了解。
+
+
+* 2. 索引配置同义词
+```json
+PUT test_index
+{
+  "settings": {
+    "analysis": {
+      "analyzer": {
+        "my_ik_smart": {
+          "tokenizer": "ik_smart",
+          "filter": [
+            "synonym"
+          ]
+        }
+      },
+      "filter": {
+        "synonym": {
+          "type": "synonym",
+          "synonyms_path": "analysis/synonym.txt"
+        }
+      }
+    }
+  },
+  "mappings": {
+    "properties": {
+      "name": {
+        "type": "text",
+        "analyzer": "my_ik_smart"
+      }
+    }
+  }
+}
+```
+
+* 3. 验证同义词
+
+查询索引字段的分词结果：
+```json
+GET test_index/_analyze
+{
+  "field": "name",
+  "text": "苹果"
+}
+```
+
+添加数据验证
+```json
+PUT _bulk
+{"create":{"_index":"test_index","_id":1}}
+{"name":"西红柿"}
+{"create":{"_index":"test_index","_id":2}}
+{"name":"苹果"}
+{"create":{"_index":"test_index","_id":3}}
+{"name":"香蕉水果"}
+```
+查询番茄，会出来西红柿数据
+```json
+GET test_index/_search
+{
+  "query": {
+    "match": {
+      "name": "番茄"
+    }
+  }
+}
+```
+查询苹果，会出来苹果、香蕉水果数据
+```json
+GET test_index/_search
+{
+  "query": {
+    "match": {
+      "name": "苹果"
+    }
+  }
+}
+```
+
 ### 3. Hanlp分词器
 这个先不写了，展开写的话内容太多了，以防本书跑题，后面再补充，想研究的话自行搜索资料，也可以联系作者，给你分享相关参考资料。
 
