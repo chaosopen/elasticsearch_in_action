@@ -123,10 +123,10 @@ POST indexname/_search
 
 ### 2. function_score 排序
 
-`function_score` 功能很强大，这里举例常用的函数，详情见官网：
+function_score 功能很强大，这里举例常用的函数，详情见官网：
 [function_score](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/query-dsl-function-score-query.html#score-functions)
 
-`function_score` 提供了很多评分函数，以下主要参数：
+function_score 提供了很多评分函数，以下主要参数：
 
 * `functions` 字段权重评分
 

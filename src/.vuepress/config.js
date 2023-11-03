@@ -91,7 +91,7 @@ module.exports = {
               path:"/chapter4/index",
               collapsable: false,
               children:[
-                '/chapter3/select_grammar',
+                '/wait',
               ]
             },
             {
@@ -99,7 +99,7 @@ module.exports = {
               path:"/chapter5/index",
               collapsable: false,
               children:[
-                '/chapter3/select_grammar',
+                '/wait',
               ]
             },
             {
@@ -107,7 +107,7 @@ module.exports = {
               path:"/chapter5/index",
               collapsable: false,
               children:[
-                '/chapter3/select_grammar',
+                '/wait',
               ]
             },
             {
@@ -115,15 +115,23 @@ module.exports = {
               path:"/chapter5/index",
               collapsable: false,
               children:[
-                '/chapter3/select_grammar',
+                '/wait',
               ]
             },
             {
-              title:"ES报错信息指南",
+              title:"第八章：ES性能优化",
+              path:"/chapter5/index",
+              collapsable: false,
+              children:[
+                '/wait',
+              ]
+            },
+            {
+              title:"ES报错信息指南（持续更新总结）",
               path:"/chapter3/index",
               collapsable: false,
               children:[
-                '/chapter3/select_grammar',
+                '/wait',
               ]
             },
             {
