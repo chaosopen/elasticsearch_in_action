@@ -41,10 +41,7 @@ module.exports = {
         nav: [
             { text: '主页', link: '/' },
             { text: '一起交流', link: '/guide/' },
-            {
-                text: '赞助',
-                link: '/sponsor'
-            },
+            { text: '赞助', link: '/sponsor' },
             { text: "GitHub", link: 'https://github.com/chaosopen/elasticsearch_in_action'}
         ],
         // 为以下路由添加左侧边栏
@@ -91,7 +88,10 @@ module.exports = {
               path:"/chapter4/index",
               collapsable: false,
               children:[
-                '/wait',
+                '/chapter4/architecture_design',
+                '/chapter4/workflow',
+                '/chapter4/inverted_index',
+                '/chapter4/score_model',
               ]
             },
             {
