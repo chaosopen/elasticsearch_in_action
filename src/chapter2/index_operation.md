@@ -153,9 +153,37 @@ DELETE indexname
         return false;
     }
 ```
+## 2.1.3 判断索引存在
+
+### 1. DSL语法
+```json
+HEAD indexname
+```
+如果索引存在，服务器将返回200状态码；如果索引不存在，服务器将返回404状态码。
+```json
+200 - OK
+```
 
 
-## 2.1.3 开启/关闭索引
+### 2. Java API
+
+```java
+    @Autowired
+    private RestHighLevelClient client;
+
+    @RequestMapping("/existsIndex")
+    public Boolean existsIndex(String indexName) {
+        GetIndexRequest request = new GetIndexRequest(indexName);
+        try {
+            return client.indices().exists(request, RequestOptions.DEFAULT);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+```
+
+## 2.1.4 开启/关闭索引
 
 什么是 Elasticsearch 打开/关闭索引？
 > 一旦索引被关闭，那么这个索引只能显示元数据信息，不能够进行读写操作。
@@ -223,7 +251,7 @@ POST indexname/_open
     }
 ```
 
-## 2.1.4 索引别名
+## 2.1.5 索引别名
 索引别名概述：
 > 在ES中，索引别名（index aliases）就像一个快捷方式或软连接，可以指向一个或多个索引。
 别名有什么用？
