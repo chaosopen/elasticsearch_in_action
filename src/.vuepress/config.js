@@ -112,10 +112,11 @@ module.exports = {
             },
             {
               title:"第七章：高阶API文档",
-              path:"/chapter5/index",
+              path:"/chapter7/index",
               collapsable: false,
               children:[
-                '/wait',
+                '/chapter7/query_operation',
+                '/chapter7/update_operation',
               ]
             },
             {
