@@ -66,8 +66,9 @@ ES7后面只有一个type，`_doc`，旧版本不过多讲解。
 数据的唯一ID
 
 ## 4.1.2 分层设计
+![图4-1](../imgs/4-1.png)
 
-
-### 1. 节点自动发现机制
-
-### 2. 节点类型
+**说明：**
+- Elasticsearch是基于Lucene架构实现的，所以其核心层为Lucene 
+- Elasticsearch 目前支持HTTP、Thrift、Memcache三种协议，默认是HTTP 
+- JMX指在Elasticsearch中对 Java 的管理架构，用来管理Elasticsearch应用
