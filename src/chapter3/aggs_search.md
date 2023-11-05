@@ -51,12 +51,14 @@ PUT _bulk
 ## 3.3.1 分桶聚合
 分桶聚合类似MySQL的Group By查询，按照指定条件，进行分组统计
 
-### 1. 全局统计
+### 1. 单字段聚合
 查询各个科目考试的有多少人
+
+#### 1.声明字段聚合
 ```json
 GET test_aggs_index/_search
 {
-  "size":0,
+  "size": 0,
   "aggs": {
     "my_aggs_name": {
       "terms": {
@@ -70,6 +72,27 @@ GET test_aggs_index/_search
   }
 }
 ```
+
+#### 2. 使用 script 聚合
+可以用脚本聚合
+```json
+GET test_aggs_index/_search
+{
+  "size": 0,
+  "aggs": {
+    "my_aggs_name": {
+      "terms": {
+        "script": "doc['course'].value",
+        "size": 10,
+        "order": {
+          "_count": "asc"
+        }
+      }
+    }
+  }
+}
+```
+
 **参数介绍：**
 size：结果条数，只要聚合结果设置0
 aggs：聚合函数  
@@ -79,7 +102,30 @@ field：字段名称
 size：返回数量  
 order：聚合结果排序，当前设置按照数量排序，默认 `_key` 按照名称排序
 
-### 2. 条件统计
+### 2. 多字段聚合
+如果要汇总 `每个班级各科目考试人数` ，就需要用到多字段统计，本章讲 `script` 实现。
+
+ES的更高版本 `7.12` 及以上有 `multi_terms` 语法支持，可以自行阅读。
+
+```json
+GET test_aggs_index/_search
+{
+  "size": 0,
+  "aggs": {
+    "my_aggs_name": {
+      "terms": {
+        "script": "doc['class'].value+'|'+doc['course'].value",
+        "size": 10,
+        "order": {
+          "_count": "asc"
+        }
+      }
+    }
+  }
+}
+```
+
+### 3. 条件聚合
 只查询 `1班` 的聚合结果
 ```json
 GET test_aggs_index/_search
