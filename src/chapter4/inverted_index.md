@@ -73,4 +73,16 @@ term index全部在缓存中，查找时，先快速定位到索引表大致位�
 2. term dictionary 的block内部利用公共前缀压缩，比如都是 Ab 开头的单词就可以把 Ab 省去，这样省空间。
 
 
-### 3. ES组合索引实现
+### 3. Postings
+
+PostingList 包含文档 id、词频、位置等多个信息，这些数据之间本身是相对独立的，因此 Lucene 将 Postings List 被拆成三个文件存储：
+- doc后缀文件：记录 Postings 的 docId 信息和 Term 的词频
+- pay后缀文件：记录 Payload 信息和偏移量信息
+- pos后缀文件：记录位置信息
+
+基本所有的查询都会用 .doc 文件获取文档 id，且一般的查询仅需要用到 .doc 文件就足够了。
+
+.doc 文件存储的是每个 Term 对应的文档 Id 和词频。每个 Term 都包含一对 TermFreqs 和 SkipData 结构。
+
+TermFreqs 存放 docId 和词频信息，SkipData 为跳表信息，用于实现 TermFreqs 内部的快速跳转。
+
