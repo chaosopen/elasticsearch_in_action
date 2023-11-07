@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "vue": "^2.7.15",
+    "vue-google-adsense": "^1.10.1",
+    "vue-script2": "^2.1.0",
     "vue-server-renderer": "^2.7.15",
     "vuepress-plugin-sitemap": "^2.3.1"
   }

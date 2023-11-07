@@ -1,3 +1,11 @@
+import Vue from 'vue'
+import Ads from 'vue-google-adsense'
+
+Vue.use(require('vue-script2'))
+Vue.use(Ads.Adsense)
+Vue.use(Ads.InArticleAdsense)
+Vue.use(Ads.InFeedAdsense)
+
 export default ({ router }) => {
   // 路由切换事件处理
   router.beforeEach((to, from, next) => {

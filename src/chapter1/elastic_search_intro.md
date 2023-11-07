@@ -1,5 +1,7 @@
 # 1.1 初识ElasticSearch
 
+<ArticleTopAd/>
+
 ## 1.1.1 ElasticSearch 简介
 
 Elasticsearch是一个开源的、基于Apache Lucene库的搜索引擎，它提供了全文搜索能力，特别适合于处理大量文本数据。下面是对Elasticsearch的一些主要特点和功能的概述：
@@ -51,3 +53,5 @@ ES中的Index可以看成一个库，Types相当于表，Documents相当于表�
 总体来说，ES在海量数据检索上有很大的性能优势，处理事务性业务不行。需要的配置（金钱）会比较昂贵。
 
 **这里如果看不太明白没有关系，可以从[搭建](/chapter1/install_elastic_search)开始学习，先上手操作起来。**
+
+<ArticleDownAd/>
