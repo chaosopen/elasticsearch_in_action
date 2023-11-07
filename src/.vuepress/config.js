@@ -1,6 +1,6 @@
 module.exports = {
     title: '《ElasticSearch入门到实战》电子书',
-    description: '本书由浅入深的介绍了ElasticSearch从安装、基础使用，进阶高级语法，实战场景，底层原理等，更好的帮助读者学习ES的知识。',
+    // description: '本书由浅入深的介绍了ElasticSearch从安装、基础使用，进阶高级语法，实战场景，底层原理等，更好的帮助读者学习ES的知识。',
     base: '/',   // 设置站点根路径
     dest: './docs',  // 设置输出目录
     port: 8088,
