@@ -41,6 +41,9 @@
           <!-- <img src="/assets/imgs/wx.jpg" width="200" /> -->
           <!-- <div> 请作者喝杯咖啡 </div> -->
         </div>
+        <div style="text-align:center;">
+          <a target="_blank" href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=jj_4DEzjFnjnAMhiLJedoETcx7ER2n8F&authKey=hAHOoupY6JeUw1YAabj1T6VVIPBEiA4dEhUTLaKIcXrFH1vzRwRS3VQykRPVf%2FUm&noverify=0&group_code=564759181">点击加入Q群：564759181</a>
+        </div>
         <div class='copyright'> 版权所有，禁止私自转发、克隆网站。</div>
       </template>
     </Page>
@@ -162,7 +165,7 @@
 <style>
   .copyright {
     text-align: center;
-    margin: 50px 16px 8px 16px;
+    margin: 16px 16px 8px 16px;
     color: grey;
     font-size: .9em;
   }
