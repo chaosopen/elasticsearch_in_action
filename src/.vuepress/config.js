@@ -102,7 +102,9 @@ module.exports = {
               path:"/chapter5/index",
               collapsable: false,
               children:[
-                '/wait',
+                '/chapter5/search_architecture',
+                '/chapter5/canal_mysql_sync_data',
+                '/chapter5/project_write',
               ]
             },
             {
