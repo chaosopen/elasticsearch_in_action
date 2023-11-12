@@ -92,7 +92,8 @@ module.exports = {
                 '/chapter4/workflow',
                 '/chapter4/inverted_index',
                 '/chapter4/score_model',
-                '/chapter4/election_mechanism'
+                '/chapter4/election_mechanism',
+                '/chapter4/data_buffer'
               ]
             },
             {
