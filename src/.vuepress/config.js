@@ -74,13 +74,14 @@ module.exports = {
               ]
             },
             {
-              title:"第三章：ElasticSearch进阶高级搜索",
+              title:"第三章：ElasticSearch进阶高级操作",
               path:"/chapter3/index",
               collapsable: false,
               children:[
                 '/chapter3/select_grammar',
                 '/chapter3/rank_search',
                 '/chapter3/aggs_search',
+                '/chapter3/monitor',
               ]
             },
             {

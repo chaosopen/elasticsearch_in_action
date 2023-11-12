@@ -2,6 +2,20 @@
 
 ES查询过程中会占用CPU、内存资源，而内存会令很多读者头疼，内存一直很高，不知道是哪里的问题，想优化，但是不懂其原理便会无从下手，所以了解内存里的缓存原理是很有必要。
 
+**清理缓存有以下几种方式**
+1. 关闭索引 [查看](/chapter2/index_operation.html#_1-关闭索引)
+2. 使用清理缓存命令
+
+清空所有缓存
+```json
+POST _cache/clear
+```
+
+清空`1个或多个`索引缓存
+```json
+POST indexname,product_index/_cache/clear
+```
+
 ## 4.6.1 Node 查询缓存
 Node级别的filter过滤器结果缓存，集群中的每个节点包含一个Node Query Cache，作用域是Node实例，由该节点的所有 shard 共享，Cache 采用 LRU 算法进行淘汰。
 
