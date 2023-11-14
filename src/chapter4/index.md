@@ -7,6 +7,6 @@
 * [4.1：架构设计](architecture_design.md)
 * [4.2：内部工作流程](workflow.md)
 * [4.3：深入理解倒排索引](inverted_index.md)
-* [4.4：评分模型TF/IDF算法](score_model.md)
+* [4.4：评分模型](score_model.md)
 * [4.5：ES中Master选举机制](score_model.md)
 * [4.6：内部缓存原理](data_buffer.md)
