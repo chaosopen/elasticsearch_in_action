@@ -38,8 +38,13 @@ show global variables like "binlog_format%";
 
 ## 5.2.5 测试数据监听发送
 
-1. 添加数据
+### 1. MySQL修改数据
+```sql
+update `sku_info` set updated_time = now();
+```
+### 2. 验证ES是否接收数据
+```json
+GET product_index/_search
+```
 
-
-2. 验证ES是否接收数据
-
+ES有数据说明同步成功
