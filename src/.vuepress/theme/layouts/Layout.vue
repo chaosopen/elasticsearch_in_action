@@ -44,7 +44,12 @@
         <div style="text-align:center;">
           <a target="_blank" href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=jj_4DEzjFnjnAMhiLJedoETcx7ER2n8F&authKey=hAHOoupY6JeUw1YAabj1T6VVIPBEiA4dEhUTLaKIcXrFH1vzRwRS3VQykRPVf%2FUm&noverify=0&group_code=564759181">点击加入Q群：564759181</a>
         </div>
-        <div class='copyright'> 版权所有，禁止私自转发、克隆网站。</div>
+        <div class='copyright'> 
+          <a target="_blank" href="https://beian.miit.gov.cn">豫ICP备2023030173号-1</a>  
+        </div>
+        <div class='copyright'> 
+          版权所有，禁止私自克隆网站。
+        </div>
       </template>
     </Page>
   </div>
