@@ -98,6 +98,12 @@ PUT product_index
             "type": "keyword"
           }
         }
+      },
+      "updateTime": {
+        "type": "keyword"
+      },
+      "createTime": {
+        "type": "keyword"
       }
     }
   }
