@@ -108,28 +108,21 @@ module.exports = {
               ]
             },
             {
-              title:"第六章：海量日志平台建设",
-              path:"/chapter5/index",
+              title:"第六章：高阶API文档",
+              path:"/chapter6/index",
               collapsable: false,
               children:[
-                '/wait',
+                '/chapter6/query_operation',
+                '/chapter6/update_operation',
               ]
             },
             {
-              title:"第七章：高阶API文档",
+              title:"第七章：ES性能优化",
               path:"/chapter7/index",
               collapsable: false,
               children:[
-                '/chapter7/query_operation',
-                '/chapter7/update_operation',
-              ]
-            },
-            {
-              title:"第八章：ES性能优化",
-              path:"/chapter5/index",
-              collapsable: false,
-              children:[
-                '/wait',
+                '/chapter7/deploy_optimization',
+                '/chapter7/run_optimization',
               ]
             },
             {
