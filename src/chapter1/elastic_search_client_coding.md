@@ -53,7 +53,7 @@ public class ElasticSearchConfig {
 
 2. 新建控制层类 `EsController` 增加创建索引接口
 ```java
-package com.yeyi.es.controller;
+package cn.chaosopen.es.controller;
 
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
@@ -112,7 +112,13 @@ SpringBoot默认端口是8080，请根据项目实际端口进行改动
 
 3. 验证创建结果
 
-打开Cerebro [http://localhost:9000](http://localhost:9000)
+- kibana执行语句
+```shell
+GET _cat/indices
+```
+查看索引列表
+
+- 打开Cerebro [http://localhost:9000](http://localhost:9000)
 
 ![图1-12](../imgs/1-12.png)
 

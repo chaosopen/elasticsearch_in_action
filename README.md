@@ -6,6 +6,8 @@
 
 - 电子书在线阅读：https://es.chaosopen.cn/
 
+- 本书章节示例源码：https://github.com/chaosopen/elasticsearch_in_action_source_code
+
 ### 进度
 
 - 基础使用正在创作，目前写到第四章

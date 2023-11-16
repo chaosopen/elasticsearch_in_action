@@ -156,6 +156,8 @@ POST _bulk
 ## 2.3.3 通过ID查询文档
 
 ### 1. DSL语法
+
+#### 1. 单个ID查询
 ```json
 GET index_operation/_doc/1
 ```
@@ -176,7 +178,21 @@ GET index_operation/_doc/1
   }
 }
 ```
+#### 2. 多个ID查询
+```json
+GET index_operation/_search
+{
+  "query": {
+    "ids": {
+      "values": ["1", "4"]
+    }
+  }
+}
+```
+
 ### 2. Java API
+
+#### 1. 单个ID查询
 ```java
     @Autowired
     private RestHighLevelClient client;
@@ -190,17 +206,30 @@ GET index_operation/_doc/1
         return getResponse;
     }
 ```
+#### 2. 多个ID查询
+```java
+    @RequestMapping("/batchGetDoc")
+    public SearchHit[] batchGetDoc() throws IOException {
+        SearchRequest request = new SearchRequest("index_operation");
+        SearchSourceBuilder builder = new SearchSourceBuilder();
+        builder.query(QueryBuilders.idsQuery().addIds("1", "4"));
+        request.source(builder);
+        SearchResponse searchResponse = client.search(request, RequestOptions.DEFAULT);
+        SearchHit[] searchHits = searchResponse.getHits().getHits();
+        return searchHits;
+    }
+```
 
 ## 2.3.4 条件查询文档
 
 查询这里我们简单了解下，后续会详细讲解查询语法
 
 ### 1. DSL语法
-1. 查询全部
+#### 1. 查询全部
 ```json
 GET index_operation/_search
 ```
-2. 查询 `age=18` 的数据
+#### 2. 查询 `age=18` 的数据
 ```json
 GET index_operation/_search
 {
@@ -211,7 +240,7 @@ GET index_operation/_search
     }
 }
 ```
-3. 查询 `age=18` 并且 `name=张三` 的数据
+#### 3. 查询 `age=18` 并且 `name=张三` 的数据
 ```json
 GET index_operation/_search
 {
@@ -235,7 +264,7 @@ GET index_operation/_search
 ```
 
 ### 2. Java API
-1. 查询 `age=18` 的数据
+#### 1. 查询 `age=18` 的数据
 ```java
     @Autowired
     private RestHighLevelClient client;
@@ -251,7 +280,7 @@ GET index_operation/_search
         return searchHits;
     }
 ```
-2. 查询 `age=18` 并且 `name=张三` 的数据
+#### 2. 查询 `age=18` 并且 `name=张三` 的数据
 ```java
     @Autowired
     private RestHighLevelClient client;
@@ -275,7 +304,7 @@ GET index_operation/_search
 
 ### 1. DSL语法
 
-1. 覆盖数据，对应ID的文档按照新的数据，这种方法修改时，需要带上所有字段，否则没带的字段会消失
+#### 1. 覆盖数据，对应ID的文档按照新的数据，这种方法修改时，需要带上所有字段，否则没带的字段会消失
 ```json
 PUT index_operation/_doc/1
 {
@@ -283,7 +312,7 @@ PUT index_operation/_doc/1
   "age":20
 }
 ```
-2. 修改数据，对应ID的文档按照新的数据，例如我想只修改age为21，其他信息不改，就采用_update方法
+#### 2. 修改数据，对应ID的文档按照新的数据，例如我想只修改age为21，其他信息不改，就采用_update方法
 ```json
 POST index_operation/_update/1
 {
@@ -294,11 +323,11 @@ POST index_operation/_update/1
 ```
 ### 2. Java API
 
-1. 覆盖数据
+#### 1. 覆盖数据
 
 **参考携带ID的添加数据**，覆盖数据就是添加数据加上ID，这里不过多演示
 
-2. 修改数据
+#### 2. 修改数据
 ```java
     @Autowired
     private RestHighLevelClient client;
@@ -463,7 +492,7 @@ DELETE index_operation/_doc/1
 
 ### 1. DSL语法
 
-* 删除 `age=18` 的数据
+#### 1. 删除 `age=18` 的数据
 ```json
 POST index_operation/_delete_by_query
 {
@@ -475,7 +504,7 @@ POST index_operation/_delete_by_query
 }
 ```
 
-* 删除 `age > 18 and age < 25` 的数据
+#### 2. 删除 `age > 18 and age < 25` 的数据
 ```json
 POST index_operation/_delete_by_query
 {
@@ -489,7 +518,7 @@ POST index_operation/_delete_by_query
   }
 }
 ```
-* 清空所有数据
+#### 3. 清空所有数据
 
 `match_all` 语法相当于查询全部数据，这种情况建议 `删索引重建`
 
@@ -502,7 +531,7 @@ POST index_operation/_delete_by_query
 }
 ```
 
-<font color='red'>**注意：删除完成后，执行以下脚本回收索引空间**</font>
+<font color='red'>**注意：删除完成后，执行以下脚本回收索引空间进行优化**</font>
 
 ```json
 POST index_operation/_forcemerge?max_num_segments=1
@@ -510,7 +539,7 @@ POST index_operation/_forcemerge?max_num_segments=1
 
 ### 2. Java API
 
-* 删除 `age=18` 的数据
+#### 1. 删除 `age=18` 的数据
 
 ```java
     @Autowired
@@ -524,7 +553,7 @@ POST index_operation/_forcemerge?max_num_segments=1
         return true;
     }
 ```
-* 删除 `age > 18 and age < 25` 的数据
+#### 2. 删除 `age > 18 and age < 25` 的数据
 ```java
     @Autowired
     private RestHighLevelClient client;
@@ -538,7 +567,7 @@ POST index_operation/_forcemerge?max_num_segments=1
     }
 ```
 
-* 清空所有数据
+#### 3. 清空所有数据
 ```java
     @Autowired
     private RestHighLevelClient client;

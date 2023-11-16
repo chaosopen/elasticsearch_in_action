@@ -82,6 +82,7 @@ cerebro创建索引其他方式：选择 `more` 里面有很多配置， 点击 
     @Autowired
     private RestHighLevelClient client;
 
+    @RequestMapping("/createIndex")
     public Boolean createIndex(String indexName) {
         //创建索引请求类，构造函数参数为索引名称
         CreateIndexRequest request = new CreateIndexRequest(indexName);
@@ -383,12 +384,16 @@ POST _aliases
     @Autowired
     private RestHighLevelClient client;
 
-    @RequestMapping("/removeAlias")
-    public Boolean removeAlias(String indexName, String aliasName) {
+    @RequestMapping("/changeAlias")
+    public Boolean changeAlias() {
+        String aliasName = "indexname_alias";
         IndicesAliasesRequest indicesAliasesRequest = new IndicesAliasesRequest();
-        IndicesAliasesRequest.AliasActions aliasActions = new IndicesAliasesRequest.AliasActions(IndicesAliasesRequest.AliasActions.Type.REMOVE);
-        aliasActions.index(indexName).alias(aliasName);
-        indicesAliasesRequest.addAliasAction(aliasActions);
+        IndicesAliasesRequest.AliasActions addAliasActions = new IndicesAliasesRequest.AliasActions(IndicesAliasesRequest.AliasActions.Type.ADD);
+        addAliasActions.index("indexname1").alias(aliasName);
+        IndicesAliasesRequest.AliasActions removeAliasActions = new IndicesAliasesRequest.AliasActions(IndicesAliasesRequest.AliasActions.Type.REMOVE);
+        removeAliasActions.index("indexname2").alias(aliasName);
+        indicesAliasesRequest.addAliasAction(addAliasActions);
+        indicesAliasesRequest.addAliasAction(removeAliasActions);
         try {
             client.indices().updateAliases(indicesAliasesRequest, RequestOptions.DEFAULT);
         } catch (IOException e) {
@@ -447,8 +452,6 @@ GET indexname/_alias/indexname_alias
     @RequestMapping("/selectIndexByAlias")
     public Map selectIndexByAlias(String aliasName) {
         GetAliasesRequest getAliasesRequest = new GetAliasesRequest(aliasName);
-        // 指定查看某一个索引的别名 不指定，则会搜索所有的别名
-        getAliasesRequest.indices();
         try {
             GetAliasesResponse response = client.indices().getAlias(getAliasesRequest,RequestOptions.DEFAULT);
             Map<String, Set<AliasMetadata>> aliases;
@@ -468,8 +471,8 @@ GET indexname/_alias/indexname_alias
     @Autowired
     private RestHighLevelClient client;
 
-    @RequestMapping("/selectIndexByAlias")
-    public Map selectIndexByAlias(String aliasName) {
+    @RequestMapping("/selectAliasByIndex")
+    public Map selectAliasByIndex(String indexName) {
         GetAliasesRequest getAliasesRequest = new GetAliasesRequest();
         // 指定查看某一个索引的别名 不指定，则会搜索所有的别名
         getAliasesRequest.indices(indexName);
@@ -485,7 +488,7 @@ GET indexname/_alias/indexname_alias
     }
 ```
 打开地址调用接口，页面出现返回结果  
-[http://localhost:8080/selectAliasByIndex?aliasName=indexname1](http://localhost:8080/selectAliasByIndex?aliasName=indexname1)
+[http://localhost:8080/selectAliasByIndex?indexName=indexname1](http://localhost:8080/selectAliasByIndex?indexName=indexname1)
 
 3. 查看别名是否存在索引中
 ```java
@@ -493,9 +496,8 @@ GET indexname/_alias/indexname_alias
     private RestHighLevelClient client;
 
     @RequestMapping("/getAliasExist")
-    public Boolean getAliasExist(String indexName,String aliasName) {
+    public Boolean getAliasExist(String indexName, String aliasName) {
         GetAliasesRequest getAliasesRequest = new GetAliasesRequest(aliasName);
-        // 指定查看某一个索引的别名 不指定，则会搜索所有的别名
         getAliasesRequest.indices(indexName);
         try {
             return client.indices().existsAlias(getAliasesRequest, RequestOptions.DEFAULT);
