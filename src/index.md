@@ -6,7 +6,7 @@
 > ES = ElasticSearch
 
 ## 进度
-- 基础使用正在创作中
+- 基础内容创作完成，其他内容陆续补充中
 
 如发现书中有疑问、缺少内容的可以在[GitHub](https://github.com/chaosopen/elasticsearch_in_action)上提Issue 
 
