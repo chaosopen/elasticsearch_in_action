@@ -2,7 +2,7 @@
 
 项目示例源码：[https://github.com/chaosopen/elasticsearch_in_action_source_code/tree/master/chapter5](https://github.com/chaosopen/elasticsearch_in_action_source_code/tree/master/chapter5)
 
-克隆本地后，运行 `chapter5` 模块下的项目。
+将项目克隆本地，运行 `chapter5` 模块下的项目。
 
 ## 5.3.1 操作商品数据
 
