@@ -125,9 +125,8 @@ outerAdapterKey: example
 esMapping:
   _index: product_index
   _id: _id
-  upsert: true
-#  pk: id
-  sql: "SELECT a.id as _id,a.spu_id,a.category_name,a.product_name,a.price,a.attrs,DATE_FORMAT(a.updated_time,'%Y-%m-%d %H:%i:%s') updateTime,DATE_FORMAT(a.created_time,'%Y-%m-%d %H:%i:%s') createTime FROM sku_info a"
+  upsert: false
+  sql: "SELECT a.id as _id,a.spu_id as spuId,a.category_name as categoryName,a.product_name as productName,a.price,a.attrs,DATE_FORMAT(a.updated_time,'%Y-%m-%d %H:%i:%s') updateTime,DATE_FORMAT(a.created_time,'%Y-%m-%d %H:%i:%s') createTime FROM sku_info a"
   objFields:
     attrs: object
   etlCondition: "where updated_time>={0}"

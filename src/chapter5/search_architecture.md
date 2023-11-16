@@ -12,7 +12,9 @@
 
 ## 5.1.2 MySQL表设计
 
-1. 商品表结构
+**数据库名称：`product_search`**
+
+### 1. 商品表结构
 ```sql
 CREATE TABLE `sku_info`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -31,7 +33,7 @@ CREATE TABLE `sku_info`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '商品表' ROW_FORMAT = Dynamic;
 ```
 
-2. 初始化数据
+### 2. 初始化数据
 
 ```sql
 INSERT INTO `sku_info` VALUES (1, 1, '手机', '新款现货Apple/苹果 iPhone 14 Pro国行苹果14promax双卡正品手机', 6349.00, '', '[{\"name\":\"颜色\",\"value\":\"黑色\"},{\"name\":\"内存\",\"value\":\"64G\"}]', 'system', '2023-11-14 09:42:57', 'system', '2023-11-14 17:11:58', 0);
@@ -75,6 +77,9 @@ PUT product_index
   },
   "mappings": {
     "properties": {
+      "spuId": {
+        "type": "keyword"
+      },
       "categoryName": {
         "type": "text",
         "analyzer": "my_ik_max_word",
