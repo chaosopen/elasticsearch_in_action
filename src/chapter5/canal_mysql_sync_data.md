@@ -133,7 +133,7 @@ esMapping:
   commitBatch: 3000
 ```
 
-## 5.2.5 测试数据监听发送
+## 5.2.6 测试数据监听发送
 
 ### 1. Canal-Adapter同步MySQL数据
 请求canal-adapter同步接口
