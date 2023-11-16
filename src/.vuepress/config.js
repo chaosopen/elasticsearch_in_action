@@ -126,11 +126,11 @@ module.exports = {
               ]
             },
             {
-              title:"ES报错信息指南（持续更新总结）",
-              path:"/chapter3/index",
+              title:"ES错误解决方案",
+              path:"/issues/index",
               collapsable: false,
               children:[
-                '/wait',
+                '/issues/install_issue.md',
               ]
             },
             {
